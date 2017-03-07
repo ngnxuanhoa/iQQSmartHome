@@ -18,6 +18,43 @@
 				</div>
 			</div>
 			
+			<!-- Cục cập nhập giá trị cảm biến -->
+			<div class="list-group-item list-group-item-home">
+				<div>
+					<i class="fa fa-tachometer feature-icon  text-primary"></i>
+				</div>
+				<div>
+					<h3 class="home-heading">Cập nhập cảm biến</h3>
+					<button class="button" ng-click="updateSensor()">
+						Nhấn vô dể cập nhập giá trị cảm biến
+					</button>
+				</div>
+			</div>
+			
+			<!-- Cục cập nhập giá trị servo -->
+			<div class="list-group-item list-group-item-home">
+				<div>
+					<i class="fa fa-tachometer feature-icon  text-primary"></i>
+				</div>
+				<div>
+					<h3 class="home-heading">Cập nhập giá trị servo</h3>
+					<input type="text" class="input text" ng-model="servoPosition" ng-change="updateServo(servoPosition)" />
+				</div>
+			</div>
+			
+			<!-- Cục thay đổi chữ trên LCD-->
+			<div class="list-group-item list-group-item-home">
+				<div>
+					<i class="fa fa-tachometer feature-icon  text-primary"></i>
+				</div>
+				<div>
+					<h3 class="home-heading">Cập nhập giá trị LCD </h3>
+					<input type="text" class="input text" ng-model="lcd[0]" ng-change="updateLCD()" />
+					<input type="text" class="input text" ng-model="lcd[1]" ng-change="updateLCD()" />
+				</div>
+			</div>
+			
+			
 			<!-- Cục thay đổi trạng thái LED -->
 			<div class="list-group-item list-group-item-home">
 				<div>
@@ -31,15 +68,15 @@
 				</div>
 			</div>
 			
-			<!-- Cục cập nhập giá trị cảm biến -->
+			<!-- Cục cập nhập giá trị nút nhấn! -->
 			<div class="list-group-item list-group-item-home">
 				<div>
 					<i class="fa fa-tachometer feature-icon  text-primary"></i>
 				</div>
 				<div>
-					<h3 class="home-heading">Cập nhập cảm biến</h3>
-					<button class="button" ng-click="updateSensor()">
-						Nhấn vô dể cập nhập giá trị cảm biến
+					<h3 class="home-heading">TRẠNG THÁI mấy cái NÚT NHẤN</h3>
+					<div ng-repeat="button_value in buttons  track by $index">
+						Nút nhấn {{$index}} đang {{button_value ? "THẢ" : "GIỮ"}}
 					</div>
 				</div>
 			</div>
