@@ -74,3 +74,4 @@ webapp_nsp.on('connection', function(socket) {
 		esp8266_nsp.emit(eventName, eventJson) //gửi toàn bộ lệnh + json đến esp8266
 	});
 })
+console.log("ok")
