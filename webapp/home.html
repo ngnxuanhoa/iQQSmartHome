@@ -68,6 +68,20 @@
 				</div>
 			</div>
 			
+						<!-- Cục thay đổi trạng thái LED -->
+			<div class="list-group-item list-group-item-home">
+				<div>
+					<i class="fa fa-tachometer feature-icon  text-primary"></i>
+				</div>
+				<div>
+					<h3 class="home-heading">TRẠNG THÁI THIẾT BỊ</h3>
+					<div ng-repeat="led_value in leds_status  track by $index">
+						Đèn LED thứ {{$index}} đang {{led_value ? "Bật" : "Tắt"}}. 
+						
+					</div>
+				</div>
+			</div>
+			
 			<!-- Cục cập nhập giá trị nút nhấn! -->
 			<div class="list-group-item list-group-item-home">
 				<div>
