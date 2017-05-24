@@ -24,7 +24,8 @@ angular.module('myApp', [
     $scope.leds_status = [1, 1]
 	$scope.Thietbi1 = "ON"
 	$scope.Thietbi2 = "ON"
-	
+	$scope.Nhietdo = "Normal"
+	$scope.Doam = "Normal"
 	////Khu 2 -- Cài đặt các sự kiện khi tương tác với người dùng
 	//các sự kiện ng-click, nhấn nút
 	$scope.updateSensor  = function() {
@@ -62,6 +63,18 @@ angular.module('myApp', [
 	//các sự kiện từ Arduino gửi lên (thông qua esp8266, thông qua server)
 	mySocket.on('RAIN', function(json) {
 		$scope.CamBienMua = (json.digital == 1) ? "Không mưa" : "Có mưa rồi yeah ahihi"
+	})
+	/// THời tiết
+	mySocket.on('NHIETDO', function(json) {
+		//Nhận được thì in ra thôi hihi.
+		console.log("recv LED", json)
+		$scope.Nhietdo = json.data
+	})
+	/// THời tiết
+	mySocket.on('DOAM', function(json) {
+		//Nhận được thì in ra thôi hihi.
+		console.log("recv LED", json)
+		$scope.Doam = json.data
 	})
 	//Khi nhận được lệnh LED_STATUS
 	mySocket.on('LED_STATUS', function(json) {
