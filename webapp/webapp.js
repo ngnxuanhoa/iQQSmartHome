@@ -22,7 +22,7 @@ angular.module('myApp', [
 	//dùng để đặt các giá trị mặc định
     $scope.l = "Không có dữ liệu - có thể chưa gắn sensor - ^^";
     $scope.leds_status = [1, 1]
-	$scope.Thietbi1 = "ON";
+	$scope.Thietbi1 = "ON"
 	$scope.Thietbi2 = "ON"
 	
 	////Khu 2 -- Cài đặt các sự kiện khi tương tác với người dùng
@@ -30,11 +30,22 @@ angular.module('myApp', [
 	$scope.updateSensor  = function() {
 		mySocket.emit("RAIN")
 	}
-	$scope.thietbi1  = function() {
-		mySocket.emit("THIETBI1")
+	$scope.thietbi1on  = function() {
+		mySocket.emit("THIETBI1ON")
+		$scope.Thietbi1 = "ON"
 	}
-	$scope.thietbi2  = function() {
-		mySocket.emit("THIETBI2")
+	$scope.thietbi1off  = function() {
+		mySocket.emit("THIETBI1OFF")
+		$scope.Thietbi1 = "OFF"
+	}
+
+	$scope.thietbi2on  = function() {
+		mySocket.emit("THIETBI2ON")
+		$scope.Thietbi2 = "ON"
+	}
+	$scope.thietbi2off  = function() {
+		mySocket.emit("THIETBI2OFF")
+		$scope.Thietbi2 = "OFF"
 	}
 	
 	//Cách gửi tham số 1: dùng biến toàn cục! $scope.<tên biến> là biến toàn cục
