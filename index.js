@@ -17,7 +17,7 @@ var middleware = require('socketio-wildcard')();		//Để có thể bắt toàn 
 esp8266_nsp.use(middleware);									//Khi esp8266 emit bất kỳ lệnh gì lên thì sẽ bị bắt
 webapp_nsp.use(middleware);									//Khi webapp emit bất kỳ lệnh gì lên thì sẽ bị bắt
 
-server.listen(process.env.PORT || PORT);										// Cho socket server (chương trình mạng) lắng nghe ở port 3484
+server.listen(process.env.PORT || PORT);										// Cho socket server (chương trình mạng) lắng nghe ở port 80
 console.log("Server nodejs chay tai dia chi: " + ip.address() + ":" + PORT)
 
 //Cài đặt webapp các fie dữ liệu tĩnh
