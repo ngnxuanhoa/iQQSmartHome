@@ -27,6 +27,7 @@ app.use(express.static("node_modules/angular-route")) 				// Có thể truy cậ
 app.use(express.static("node_modules/socket.io-client")) 				// Có thể truy cập các file trong node_modules/socket.io-client từ xa
 app.use(express.static("node_modules/angular-socket-io"))			// Có thể truy cập các file trong node_modules/angular-socket-io từ xa
 app.use(express.static("webapp")) 													// Dùng để lưu trữ webapp
+app.use(express.static("node_modules/angular-bootstrap-toggle-switch")) 													// Dùng để lưu trữ webapp
 
 
 //giải nén chuỗi JSON thành các OBJECT
