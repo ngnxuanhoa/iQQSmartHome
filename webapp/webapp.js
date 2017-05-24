@@ -98,7 +98,10 @@ angular.module('myApp', [
 	mySocket.on('connect', function() {
 		console.log("connected")
 		mySocket.emit("RAIN") //Cập nhập trạng thái mưa
-		
+		mySocket.emit("NHIETDO") //Cập nhập trạng thái mưa
+		mySocket.emit("DOAM") //Cập nhập trạng thái mưa
+		mySocket.emit("THIETBI1") //Cập nhập trạng thái mưa
+		mySocket.emit("THIETBI2") //Cập nhập trạng thái mưa
 	})
 		
 });
