@@ -2,8 +2,7 @@ angular.module('myApp', [
     'ngRoute',
     'mobile-angular-ui',
 	'btford.socket-io',
-	'toggle-switch',
-	'ngSanitize'
+	'toggle-switch'
 ]).config(function($routeProvider) {
     $routeProvider.when('/', {
         templateUrl: 'home.html',
