@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "angular": "^1.6.4",
-    "angular-bootstrap-toggle-switch": "^1.1.0",
+    "angular-bootstrap-toggle-switch": "git+https://github.com/JumpLink/angular-toggle-switch.git",
     "angular-route": "^1.6.2",
     "angular-socket-io": "^0.7.0",
     "express": "*",
