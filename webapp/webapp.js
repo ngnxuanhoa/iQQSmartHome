@@ -59,17 +59,17 @@ angular.module('myApp', [
 	$scope.CamBienMua = (json["RAIN"] == 1) ? "Không mưa" : "Có mưa rồi yeah ahihi"
 	})
 	
-	/// THời tiết
+	/// THời tiết Nhiệt độ
 	mySocket.on('RAIN', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		console.log("recv LED", json)
 		$scope.Nhietdo = json["NHIETDO"]
 	})
-	/// THời tiết
+	/// THời tiết độ ẩm
 	mySocket.on('RAIN', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		console.log("recv LED", json)
-		$scope.Doam = json["DOAM"]
+		$scope.Doam = json["RAIN"]
 	})
 	//khi nhận được lệnh Button
 	mySocket.on('THIETBI1', function(json) {
