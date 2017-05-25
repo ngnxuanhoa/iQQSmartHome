@@ -1,7 +1,8 @@
 angular.module('myApp', [
     'ngRoute',
     'mobile-angular-ui',
-	'btford.socket-io'
+	'btford.socket-io',
+	'toggle-switch'
 ]).config(function($routeProvider) {
     $routeProvider.when('/', {
         templateUrl: 'home.html',
@@ -86,12 +87,14 @@ angular.module('myApp', [
 	mySocket.on('THIETBI1', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		//console.log("recv THIETBI1", json)
+		mySocket.emit("THIETBI1")
 		$scope.Thietbi1 = json.data
 	})
 	
-		mySocket.on('THIETBI2', function(json) {
+	mySocket.on('THIETBI2', function(json) {
 		//Nhận được thì in ra thôi hihi.
-		console.log("recv THIETBI2", json)
+		//console.log("recv THIETBI2", json)
+		mySocket.emit("THIETBI2")
 		$scope.Thietbi2 = json.data
 	})
 	//// Khu 4 -- Những dòng code sẽ được thực thi khi kết nối với Arduino (thông qua socket server)
