@@ -24,8 +24,6 @@ angular.module('myApp', [
 	//dùng để đặt các giá trị mặc định
     $scope.l = "Không có dữ liệu - có thể chưa gắn sensor - ^^";
     $scope.leds_status = [1, 1]
-
-
 	$scope.Nhietdo = "Normal"
 	$scope.Doam = "Normal"
 	$scope.Thietbi1  = function() {
@@ -97,14 +95,12 @@ angular.module('myApp', [
 	mySocket.on('THIETBI1', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		//console.log("recv THIETBI1", json)
-		mySocket.emit("THIETBI1")
 		$scope.Thietbi1 = json.data
 	})
 	
 	mySocket.on('THIETBI2', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		//console.log("recv THIETBI2", json)
-		mySocket.emit("THIETBI2")
 		$scope.Thietbi2 = json.data
 	})
 	//// Khu 4 -- Những dòng code sẽ được thực thi khi kết nối với Arduino (thông qua socket server)
@@ -113,8 +109,6 @@ angular.module('myApp', [
 		mySocket.emit("RAIN") //Cập nhập trạng thái mưa
 		mySocket.emit("NHIETDO") //Cập nhập trạng thái mưa
 		mySocket.emit("DOAM") //Cập nhập trạng thái mưa
-		mySocket.emit("THIETBI1") //Cập nhập trạng thái mưa
-		mySocket.emit("THIETBI2") //Cập nhập trạng thái mưa
 	})
 		
 });
