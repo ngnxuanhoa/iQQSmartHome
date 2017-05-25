@@ -30,7 +30,7 @@ angular.module('myApp', [
 	$scope.Thietbi2  = function() {
 		mySocket.emit("THIETBI2")
 		mySocket.on('THIETBI2', function(json){
-		$scope.Thietbi2 = (json.digital == 1) ? "ON" : "OFF"
+		$scope.Thietbi2 = json
 		});
 	}
 	////Khu 2 -- Cài đặt các sự kiện khi tương tác với người dùng
@@ -41,13 +41,13 @@ angular.module('myApp', [
 	$scope.thietbi1on  = function() {
 		mySocket.emit("THIETBI1ON")
 		mySocket.on('THIETBI1ON', function(json){
-		$scope.Thietbi1 = (json.digital == 1) ? "ON" : "OFF"
+		$scope.Thietbi1 = json
 		});
 	}
 	$scope.thietbi1off  = function() {
 		mySocket.emit("THIETBI1OFF")
 		mySocket.on('THIETBI1OFF', function(json){
-		$scope.Thietbi1 = (json.digital == 1) ? "ON" : "OFF"
+		$scope.Thietbi1 = json
 		});
 	}
 
