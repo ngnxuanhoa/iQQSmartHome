@@ -75,22 +75,7 @@
 					Thiết bị 1: {{Thietbi1}}
 					Thiết bị 2: {{Thietbi2}}
 				</div>
-			</div>				
-			<!-- Cục thay đổi trạng thái LED -->
-			<div class="list-group-item list-group-item-home">
-				<div>
-					<i class="fa fa-tachometer feature-icon  text-primary"></i>
-				</div>
-				<div>
-					<h3 class="home-heading">TRẠNG THÁI ĐÈN LED</h3>
-					<div ng-repeat="led_value in leds_status  track by $index">
-						Đèn LED thứ {{$index}} đang {{led_value ? "Bật" : "Tắt"}}. 
-						<input type="checkbox" ng-true-value="1" ng-false-value="0" ng-change="changeLED()" ng-model="leds_status[$index]" />
-					</div>
-				</div>
-			</div>
-	
-			
+			</div>							
 		</div>
 	</div>
 </div>

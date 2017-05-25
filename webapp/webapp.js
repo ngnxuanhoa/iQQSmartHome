@@ -22,7 +22,6 @@ angular.module('myApp', [
     //cài đặt một số tham số test chơi
 	//dùng để đặt các giá trị mặc định
     $scope.l = "Không có dữ liệu - có thể chưa gắn sensor - ^^";
-    $scope.leds_status = [1, 1]
 	$scope.Nhietdo = "Normal"
 	$scope.Doam = "Normal"
 	$scope.Thietbi1  = "ON"	
@@ -41,7 +40,6 @@ angular.module('myApp', [
 		mySocket.emit("THIETBI1OFF")
 		//$scope.Thietbi1 = json["THIETBI1"]
 	}
-
 	$scope.thietbi2on  = function() {
 		mySocket.emit("THIETBI2ON")
 		//$scope.Thietbi2 = json["THIETBI2"]
@@ -54,14 +52,6 @@ angular.module('myApp', [
 	}
 	
 	//Cách gửi tham số 1: dùng biến toàn cục! $scope.<tên biến> là biến toàn cục
-	$scope.changeLED = function() {
-		console.log("send LED ", $scope.leds_status)
-		
-		var json = {
-			"led": $scope.leds_status
-		}
-		mySocket.emit("LED", json)
-	}
 		
 	////Khu 3 -- Nhận dữ liệu từ Arduno gửi lên (thông qua ESP8266 rồi socket server truyền tải!)
 	//các sự kiện từ Arduino gửi lên (thông qua esp8266, thông qua server)
@@ -81,20 +71,13 @@ angular.module('myApp', [
 		console.log("recv LED", json)
 		$scope.Doam = json["DOAM"]
 	})
-	//Khi nhận được lệnh LED_STATUS
-	mySocket.on('LED_STATUS', function(json) {
-		//Nhận được thì in ra thôi hihi.
-		console.log("recv LED", json)
-		$scope.leds_status = json.data
-	})
 	//khi nhận được lệnh Button
 	mySocket.on('THIETBI1', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		console.log("recv THIETBI1", json)
 		//$scope.Thietbi1 = json["THIETBI1"]
 		$scope.Thietbi1 = (json["THIETBI1"] == 1) ? "ON" : "OFF"
-	})
-	
+	})	
 	mySocket.on('THIETBI2', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		console.log("recv THIETBI2", json)
