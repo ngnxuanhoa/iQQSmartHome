@@ -38,11 +38,11 @@ angular.module('myApp', [
 	}
 	$scope.thietbi1on  = function(json) {
 		mySocket.emit("THIETBI1ON")
-		$scope.Thietbi1 = (json.digital == 1) ? "ON" : "OFF"
+		$scope.Thietbi1 = (tb1.digital == 1) ? "ON" : "OFF"
 	}
-	$scope.thietbi1off  = function(json) {
+	$scope.thietbi1off  = function(tb1) {
 		mySocket.emit("THIETBI1OFF")
-		$scope.Thietbi1 = (json.digital == 1) ? "ON" : "OFF"
+		$scope.Thietbi1 = (tb1.digital == 1) ? "ON" : "OFF"
 	}
 
 	$scope.thietbi2on  = function() {
@@ -66,21 +66,21 @@ angular.module('myApp', [
 		
 	////Khu 3 -- Nhận dữ liệu từ Arduno gửi lên (thông qua ESP8266 rồi socket server truyền tải!)
 	//các sự kiện từ Arduino gửi lên (thông qua esp8266, thông qua server)
-	mySocket.on('RAIN', function(json) {
-		$scope.CamBienMua = (json.digital == 1) ? "Không mưa" : "Có mưa rồi yeah ahihi"
+	mySocket.on('RAIN', function(mua) {
+		$scope.CamBienMua = (mua.digital == 1) ? "Không mưa" : "Có mưa rồi yeah ahihi"
 	})
 	
 	/// THời tiết
-	mySocket.on('NHIETDO', function(json) {
+	mySocket.on('NHIETDO', function(nhd) {
 		//Nhận được thì in ra thôi hihi.
 		console.log("recv LED", json)
-		$scope.Nhietdo = json.data
+		$scope.Nhietdo = nhd.data
 	})
 	/// THời tiết
-	mySocket.on('DOAM', function(json) {
+	mySocket.on('DOAM', function(doa) {
 		//Nhận được thì in ra thôi hihi.
 		console.log("recv LED", json)
-		$scope.Doam = json.data
+		$scope.Doam = doa.data
 	})
 	//Khi nhận được lệnh LED_STATUS
 	mySocket.on('LED_STATUS', function(json) {
@@ -89,16 +89,16 @@ angular.module('myApp', [
 		$scope.leds_status = json.data
 	})
 	//khi nhận được lệnh Button
-	mySocket.on('THIETBI1', function(json) {
+	mySocket.on('THIETBI1', function(tb1) {
 		//Nhận được thì in ra thôi hihi.
 		//console.log("recv THIETBI1", json)
-		$scope.Thietbi1 = (json.digital == 1) ? "ON" : "OFF"
+		$scope.Thietbi1 = (tb1.digital == 1) ? "ON" : "OFF"
 	})
 	
-	mySocket.on('THIETBI2', function(json) {
+	mySocket.on('THIETBI2', function(tb2) {
 		//Nhận được thì in ra thôi hihi.
 		//console.log("recv THIETBI2", json)
-		$scope.Thietbi2 = (json.digital == 1) ? "ON" : "OFF"
+		$scope.Thietbi2 = (tb2.digital == 1) ? "ON" : "OFF"
 	})
 	//// Khu 4 -- Những dòng code sẽ được thực thi khi kết nối với Arduino (thông qua socket server)
 	mySocket.on('connect', function() {
