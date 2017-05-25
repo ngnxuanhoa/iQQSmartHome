@@ -29,20 +29,26 @@ angular.module('myApp', [
 	
 	$scope.Thietbi2  = function() {
 		mySocket.emit("THIETBI2")
-		
+		mySocket.on('THIETBI2', function(json){
+		$scope.Thietbi2 = (json.digital == 1) ? "ON" : "OFF"
+		});
 	}
 	////Khu 2 -- Cài đặt các sự kiện khi tương tác với người dùng
 	//các sự kiện ng-click, nhấn nút
 	$scope.updateSensor  = function() {
 		mySocket.emit("RAIN")
 	}
-	$scope.thietbi1on  = function(json) {
+	$scope.thietbi1on  = function() {
 		mySocket.emit("THIETBI1ON")
-		$scope.Thietbi1 = (tb1.digital == 1) ? "ON" : "OFF"
+		mySocket.on('THIETBI1ON', function(json){
+		$scope.Thietbi1 = (json.digital == 1) ? "ON" : "OFF"
+		});
 	}
-	$scope.thietbi1off  = function(tb1) {
+	$scope.thietbi1off  = function() {
 		mySocket.emit("THIETBI1OFF")
-		$scope.Thietbi1 = (tb1.digital == 1) ? "ON" : "OFF"
+		mySocket.on('THIETBI1OFF', function(json){
+		$scope.Thietbi1 = (json.digital == 1) ? "ON" : "OFF"
+		});
 	}
 
 	$scope.thietbi2on  = function() {
@@ -73,31 +79,31 @@ angular.module('myApp', [
 	/// THời tiết
 	mySocket.on('NHIETDO', function(nhd) {
 		//Nhận được thì in ra thôi hihi.
-		console.log("recv LED", json)
-		$scope.Nhietdo = nhd.data
+		console.log("recv LED", nhd)
+		$scope.Nhietdo = nhd
 	})
 	/// THời tiết
 	mySocket.on('DOAM', function(doa) {
 		//Nhận được thì in ra thôi hihi.
-		console.log("recv LED", json)
-		$scope.Doam = doa.data
+		console.log("recv LED", doa)
+		$scope.Doam = doa
 	})
 	//Khi nhận được lệnh LED_STATUS
 	mySocket.on('LED_STATUS', function(json) {
 		//Nhận được thì in ra thôi hihi.
-		//console.log("recv LED", json)
+		console.log("recv LED", json)
 		$scope.leds_status = json.data
 	})
 	//khi nhận được lệnh Button
 	mySocket.on('THIETBI1', function(tb1) {
 		//Nhận được thì in ra thôi hihi.
-		//console.log("recv THIETBI1", json)
+		console.log("recv THIETBI1", tb1)
 		$scope.Thietbi1 = (tb1.digital == 1) ? "ON" : "OFF"
 	})
 	
 	mySocket.on('THIETBI2', function(tb2) {
 		//Nhận được thì in ra thôi hihi.
-		//console.log("recv THIETBI2", json)
+		console.log("recv THIETBI2", tb2)
 		$scope.Thietbi2 = (tb2.digital == 1) ? "ON" : "OFF"
 	})
 	//// Khu 4 -- Những dòng code sẽ được thực thi khi kết nối với Arduino (thông qua socket server)
