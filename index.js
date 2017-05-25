@@ -29,9 +29,6 @@ app.use(express.static("node_modules/angular-socket-io"))			// Có thể truy c�
 app.use(express.static("webapp")) 													// Dùng để lưu trữ webapp
 app.use(express.static("node_modules/angular-bootstrap-toggle-switch")) 													// Dùng để lưu trữ webapp
 
-app.get("/", function(req,res){
-res.sendFile(__dirname + "/webapp/home.html");});
-
 //giải nén chuỗi JSON thành các OBJECT
 function ParseJson(jsondata) {
     try {
