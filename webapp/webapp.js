@@ -25,7 +25,7 @@ angular.module('myApp', [
     $scope.leds_status = [1, 1]
 	$scope.Nhietdo = "Normal"
 	$scope.Doam = "Normal"
-	$scope.Thietbi1  = ["ON", "OFF"]
+	$scope.Thietbi1  = "ON"
 	
 	$scope.Thietbi2  = function() {
 		mySocket.emit("THIETBI2")
@@ -40,7 +40,7 @@ angular.module('myApp', [
 		mySocket.emit("THIETBI1ON")
 		$scope.Thietbi1 = (json.digital == 1) ? "ON" : "OFF"
 	}
-	$scope.thietbi1off  = function() {
+	$scope.thietbi1off  = function(json) {
 		mySocket.emit("THIETBI1OFF")
 		$scope.Thietbi1 = (json.digital == 1) ? "ON" : "OFF"
 	}
@@ -98,7 +98,7 @@ angular.module('myApp', [
 	mySocket.on('THIETBI2', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		//console.log("recv THIETBI2", json)
-		$scope.Thietbi2 = json.data
+		$scope.Thietbi2 = (json.digital == 1) ? "ON" : "OFF"
 	})
 	//// Khu 4 -- Những dòng code sẽ được thực thi khi kết nối với Arduino (thông qua socket server)
 	mySocket.on('connect', function() {
