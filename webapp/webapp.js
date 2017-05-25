@@ -66,11 +66,14 @@ angular.module('myApp', [
 		$scope.Doam = json["DOAM"]
 	})
 	//khi nhận được lệnh Button
-	mySocket.on('THIETBI', function(json) {
+	mySocket.on('THIETBI1', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		$scope.Thietbi1 = (json["THIETBI1"] == 1) ? "ON" : "OFF"
+	})
+	mySocket.on('THIETBI2', function(json) {
+		//Nhận được thì in ra thôi hihi.
 		$scope.Thietbi2 = (json["THIETBI2"] == 1) ? "ON" : "OFF"
-	})	
+	})		
 	//// Khu 4 -- Những dòng code sẽ được thực thi khi kết nối với Arduino (thông qua socket server)
 	mySocket.on('connect', function() {
 		console.log("connected")
