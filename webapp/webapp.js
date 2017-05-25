@@ -24,14 +24,18 @@ angular.module('myApp', [
 	//dùng để đặt các giá trị mặc định
     $scope.l = "Không có dữ liệu - có thể chưa gắn sensor - ^^";
     $scope.leds_status = [1, 1]
-	$scope.Thietbi1 = "ON"
-	$scope.Thietbi2 = "ON"
+
+
 	$scope.Nhietdo = "Normal"
 	$scope.Doam = "Normal"
-	$scope.updateSensor  = function() {
-		mySocket.emit("RAIN")
+	$scope.Thietbi1  = function() {
+		mySocket.emit("THIETBI1")
+		$scope.Thietbi1 = json.data
 	}
-	
+	$scope.Thietbi2  = function() {
+		mySocket.emit("THIETBI2")
+		$scope.Thietbi2 = json.data
+	}
 	////Khu 2 -- Cài đặt các sự kiện khi tương tác với người dùng
 	//các sự kiện ng-click, nhấn nút
 	$scope.updateSensor  = function() {
