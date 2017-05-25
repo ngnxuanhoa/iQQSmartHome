@@ -35,21 +35,21 @@ angular.module('myApp', [
 	}
 	$scope.thietbi1on  = function() {
 		mySocket.emit("THIETBI1ON")
-		$scope.Thietbi1 = json["THIETBI1"]
+		//$scope.Thietbi1 = json["THIETBI1"]
 	}
 	$scope.thietbi1off  = function() {
 		mySocket.emit("THIETBI1OFF")
-		$scope.Thietbi1 = json["THIETBI1"]
+		//$scope.Thietbi1 = json["THIETBI1"]
 	}
 
 	$scope.thietbi2on  = function() {
 		mySocket.emit("THIETBI2ON")
-		$scope.Thietbi2 = json["THIETBI2"]
+		//$scope.Thietbi2 = json["THIETBI2"]
 		//$scope.Thietbi2 = "ON"
 	}
 	$scope.thietbi2off  = function() {
 		mySocket.emit("THIETBI2OFF")
-		$scope.Thietbi2 = json["THIETBI2"]
+		//$scope.Thietbi2 = json["THIETBI2"]
 		//$scope.Thietbi2 = "OFF"
 	}
 	
