@@ -1,7 +1,8 @@
 angular.module('myApp', [
     'ngRoute',
     'mobile-angular-ui',
-	'btford.socket-io'
+	'btford.socket-io',
+	'toggle-switch'
 ]).config(function($routeProvider) {
     $routeProvider.when('/', {
         templateUrl: 'home.html',
@@ -20,18 +21,41 @@ angular.module('myApp', [
 	////Khu 1 -- Khu cài đặt tham số 
     //cài đặt một số tham số test chơi
 	//dùng để đặt các giá trị mặc định
-    $scope.CamBienMua = "Không biết nữa ahihi, chưa thấy có thằng nào cập nhập hết";
+    $scope.l = "Không có dữ liệu - có thể chưa gắn sensor - ^^";
     $scope.leds_status = [1, 1]
-	$scope.lcd = ["", ""]
-	$scope.servoPosition = 0
-	$scope.buttons = [] //chả có gì cả, arduino gửi nhiêu thì nhận nhiêu!
-	
+	$scope.Nhietdo = "Normal"
+	$scope.Doam = "Normal"
+
+	$scope.Thietbi1  = function() {
+		mySocket.emit("THIETBI1")
+		$scope.Thietbi1 = json.data
+	}
+	$scope.Thietbi2  = function() {
+		mySocket.emit("THIETBI2")
+		$scope.Thietbi2 = json.data
+	}
 	////Khu 2 -- Cài đặt các sự kiện khi tương tác với người dùng
 	//các sự kiện ng-click, nhấn nút
 	$scope.updateSensor  = function() {
 		mySocket.emit("RAIN")
 	}
-	
+	$scope.thietbi1on  = function() {
+		mySocket.emit("THIETBI1ON")
+		$scope.Thietbi1 = "ON"
+	}
+	$scope.thietbi1off  = function() {
+		mySocket.emit("THIETBI1OFF")
+		$scope.Thietbi1 = "OFF"
+	}
+
+	$scope.thietbi2on  = function() {
+		mySocket.emit("THIETBI2ON")
+		$scope.Thietbi2 = "ON"
+	}
+	$scope.thietbi2off  = function() {
+		mySocket.emit("THIETBI2OFF")
+		$scope.Thietbi2 = "OFF"
+	}
 	
 	//Cách gửi tham số 1: dùng biến toàn cục! $scope.<tên biến> là biến toàn cục
 	$scope.changeLED = function() {
@@ -42,55 +66,49 @@ angular.module('myApp', [
 		}
 		mySocket.emit("LED", json)
 	}
-	
-	//cập nhập lcd như một ông trùm 
-	$scope.updateLCD = function() {
 		
-		
-		var json = {
-			"line": $scope.lcd
-		}
-		console.log("LCD_PRINT ", $scope.lcd)
-		mySocket.emit("LCD_PRINT", json)
-	}
-	
-	//Cách gửi tham số 2: dùng biến cục bộ: servoPosition. Biến này đươc truyền từ file home.html, dữ liệu đươc truyền vào đó chính là biến toàn cục $scope.servoPosition. Cách 2 này sẽ giúp bạn tái sử dụng hàm này vào mục đích khác, thay vì chỉ sử dụng cho việc bắt sự kiện như cách 1, xem ở Khu 4 để biết thêm ứng dụng!
-	$scope.updateServo = function(servoPosition) {
-		
-		var json = {
-			"degree": servoPosition,
-			"message": "Goc ne: " + servoPosition
-		}
-		
-		console.log("SEND SERVO", json) //debug chơi à
-		mySocket.emit("SERVO", json)
-	}
-	
 	////Khu 3 -- Nhận dữ liệu từ Arduno gửi lên (thông qua ESP8266 rồi socket server truyền tải!)
 	//các sự kiện từ Arduino gửi lên (thông qua esp8266, thông qua server)
 	mySocket.on('RAIN', function(json) {
 		$scope.CamBienMua = (json.digital == 1) ? "Không mưa" : "Có mưa rồi yeah ahihi"
 	})
+	
+	/// THời tiết
+	mySocket.on('NHIETDO', function(json) {
+		//Nhận được thì in ra thôi hihi.
+		console.log("recv LED", json)
+		$scope.Nhietdo = json.data
+	})
+	/// THời tiết
+	mySocket.on('DOAM', function(json) {
+		//Nhận được thì in ra thôi hihi.
+		console.log("recv LED", json)
+		$scope.Doam = json.data
+	})
 	//Khi nhận được lệnh LED_STATUS
 	mySocket.on('LED_STATUS', function(json) {
 		//Nhận được thì in ra thôi hihi.
-		console.log("recv LED", json)
+		//console.log("recv LED", json)
 		$scope.leds_status = json.data
 	})
 	//khi nhận được lệnh Button
-	mySocket.on('BUTTON', function(json) {
+	mySocket.on('THIETBI1', function(json) {
 		//Nhận được thì in ra thôi hihi.
-		console.log("recv BUTTON", json)
-		$scope.buttons = json.data
+		//console.log("recv THIETBI1", json)
+		$scope.Thietbi1 = json.data
 	})
 	
-	
+	mySocket.on('THIETBI2', function(json) {
+		//Nhận được thì in ra thôi hihi.
+		//console.log("recv THIETBI2", json)
+		$scope.Thietbi2 = json.data
+	})
 	//// Khu 4 -- Những dòng code sẽ được thực thi khi kết nối với Arduino (thông qua socket server)
 	mySocket.on('connect', function() {
 		console.log("connected")
 		mySocket.emit("RAIN") //Cập nhập trạng thái mưa
-		
-		$scope.updateServo(0) //Servo quay về góc 0 độ!. Dùng cách 2 
+		mySocket.emit("NHIETDO") //Cập nhập trạng thái mưa
+		mySocket.emit("DOAM") //Cập nhập trạng thái mưa
 	})
 		
 });
