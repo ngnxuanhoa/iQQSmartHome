@@ -28,6 +28,10 @@ angular.module('myApp', [
 	$scope.Thietbi2 = "ON"
 	$scope.Nhietdo = "Normal"
 	$scope.Doam = "Normal"
+	$scope.updateSensor  = function() {
+		mySocket.emit("RAIN")
+	}
+	
 	////Khu 2 -- Cài đặt các sự kiện khi tương tác với người dùng
 	//các sự kiện ng-click, nhấn nút
 	$scope.updateSensor  = function() {
@@ -66,6 +70,7 @@ angular.module('myApp', [
 	mySocket.on('RAIN', function(json) {
 		$scope.CamBienMua = (json.digital == 1) ? "Không mưa" : "Có mưa rồi yeah ahihi"
 	})
+	
 	/// THời tiết
 	mySocket.on('NHIETDO', function(json) {
 		//Nhận được thì in ra thôi hihi.
