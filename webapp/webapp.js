@@ -60,16 +60,16 @@ angular.module('myApp', [
 	})
 	
 	/// THời tiết Nhiệt độ
-	mySocket.on('RAIN', function(json) {
+	mySocket.on('NHIETDO', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		console.log("recv LED", json)
 		$scope.Nhietdo = json["NHIETDO"]
 	})
 	/// THời tiết độ ẩm
-	mySocket.on('RAIN', function(json) {
+	mySocket.on('DOAM', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		console.log("recv LED", json)
-		$scope.Doam = json["RAIN"]
+		$scope.Doam = json["DOAM"]
 	})
 	//khi nhận được lệnh Button
 	mySocket.on('THIETBI1', function(json) {
