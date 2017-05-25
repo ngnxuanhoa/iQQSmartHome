@@ -38,7 +38,7 @@ angular.module('myApp', [
 		$scope.Thietbi1 = json["THIETBI1"]
 	}
 	$scope.thietbi1off  = function() {
-		mySocket.emit("THIETBI1ON")
+		mySocket.emit("THIETBI1OFF")
 		$scope.Thietbi1 = json["THIETBI1"]
 	}
 
