@@ -34,21 +34,15 @@ angular.module('myApp', [
 	}
 	$scope.thietbi1on  = function() {
 		mySocket.emit("THIETBI1ON")
-		//$scope.Thietbi1 = json["THIETBI1"]
 	}
 	$scope.thietbi1off  = function() {
 		mySocket.emit("THIETBI1OFF")
-		//$scope.Thietbi1 = json["THIETBI1"]
 	}
 	$scope.thietbi2on  = function() {
 		mySocket.emit("THIETBI2ON")
-		//$scope.Thietbi2 = json["THIETBI2"]
-		//$scope.Thietbi2 = "ON"
 	}
 	$scope.thietbi2off  = function() {
 		mySocket.emit("THIETBI2OFF")
-		//$scope.Thietbi2 = json["THIETBI2"]
-		//$scope.Thietbi2 = "OFF"
 	}
 	
 	//Cách gửi tham số 1: dùng biến toàn cục! $scope.<tên biến> là biến toàn cục
@@ -72,24 +66,16 @@ angular.module('myApp', [
 		$scope.Doam = json["DOAM"]
 	})
 	//khi nhận được lệnh Button
-	mySocket.on('THIETBI1', function(json) {
+	mySocket.on('THIETBI', function(json) {
 		//Nhận được thì in ra thôi hihi.
-		console.log("recv THIETBI1", json)
-		//$scope.Thietbi1 = json["THIETBI1"]
 		$scope.Thietbi1 = (json["THIETBI1"] == 1) ? "ON" : "OFF"
-	})	
-	mySocket.on('THIETBI2', function(json) {
-		//Nhận được thì in ra thôi hihi.
-		console.log("recv THIETBI2", json)
-		//$scope.Thietbi2 = json["THIETBI2"]
 		$scope.Thietbi2 = (json["THIETBI2"] == 1) ? "ON" : "OFF"
-	})
+	})	
 	//// Khu 4 -- Những dòng code sẽ được thực thi khi kết nối với Arduino (thông qua socket server)
 	mySocket.on('connect', function() {
 		console.log("connected")
 		mySocket.emit("RAIN") //Cập nhập trạng thái mưa
-		mySocket.emit("THIETBI1") //Cập nhập trạng thái mưa
-		mySocket.emit("THIETBI2") //Cập nhập trạng thái mưa
+		mySocket.emit("THIETBI") //Cập nhập trạng thái mưa
 	})
 		
 });
