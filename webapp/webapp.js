@@ -41,11 +41,11 @@ angular.module('myApp', [
 	}
 	$scope.thietbi1on  = function() {
 		mySocket.emit("THIETBI1ON")
-		$scope.Thietbi1 = json.data
+		$scope.Thietbi1 = json
 	}
 	$scope.thietbi1off  = function() {
 		mySocket.emit("THIETBI1OFF")
-		$scope.Thietbi1 = json.data
+		$scope.Thietbi1 = json
 	}
 
 	$scope.thietbi2on  = function() {
