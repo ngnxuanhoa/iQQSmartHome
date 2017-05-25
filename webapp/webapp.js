@@ -25,11 +25,8 @@ angular.module('myApp', [
     $scope.leds_status = [1, 1]
 	$scope.Nhietdo = "Normal"
 	$scope.Doam = "Normal"
-
-	$scope.Thietbi1  = function() {
-		mySocket.emit("THIETBI1")
-		
-	}
+	$scope.Thietbi1  = ["ON", "OFF"]
+	
 	$scope.Thietbi2  = function() {
 		mySocket.emit("THIETBI2")
 		
@@ -39,13 +36,13 @@ angular.module('myApp', [
 	$scope.updateSensor  = function() {
 		mySocket.emit("RAIN")
 	}
-	$scope.thietbi1on  = function() {
+	$scope.thietbi1on  = function(json) {
 		mySocket.emit("THIETBI1ON")
-		$scope.Thietbi1
+		$scope.Thietbi1 = (json.digital == 1) ? "ON" : "OFF"
 	}
 	$scope.thietbi1off  = function() {
 		mySocket.emit("THIETBI1OFF")
-		$scope.Thietbi1
+		$scope.Thietbi1 = (json.digital == 1) ? "ON" : "OFF"
 	}
 
 	$scope.thietbi2on  = function() {
@@ -95,7 +92,7 @@ angular.module('myApp', [
 	mySocket.on('THIETBI1', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		//console.log("recv THIETBI1", json)
-		$scope.Thietbi1 = json.data
+		$scope.Thietbi1 = (json.digital == 1) ? "ON" : "OFF"
 	})
 	
 	mySocket.on('THIETBI2', function(json) {
