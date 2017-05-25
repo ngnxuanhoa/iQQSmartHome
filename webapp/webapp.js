@@ -26,14 +26,7 @@ angular.module('myApp', [
     $scope.leds_status = [1, 1]
 	$scope.Nhietdo = "Normal"
 	$scope.Doam = "Normal"
-	$scope.Thietbi1  = function() {
-		mySocket.emit("THIETBI1")
-		$scope.Thietbi1 = json.data
-	}
-	$scope.Thietbi2  = function() {
-		mySocket.emit("THIETBI2")
-		$scope.Thietbi2 = json.data
-	}
+
 	////Khu 2 -- Cài đặt các sự kiện khi tương tác với người dùng
 	//các sự kiện ng-click, nhấn nút
 	$scope.updateSensor  = function() {
