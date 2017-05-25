@@ -79,13 +79,13 @@ angular.module('myApp', [
 	//Khi nhận được lệnh LED_STATUS
 	mySocket.on('LED_STATUS', function(json) {
 		//Nhận được thì in ra thôi hihi.
-		console.log("recv LED", json)
+		//console.log("recv LED", json)
 		$scope.leds_status = json.data
 	})
 	//khi nhận được lệnh Button
 	mySocket.on('THIETBI1', function(json) {
 		//Nhận được thì in ra thôi hihi.
-		console.log("recv THIETBI1", json)
+		//console.log("recv THIETBI1", json)
 		$scope.Thietbi1 = json.data
 	})
 	
