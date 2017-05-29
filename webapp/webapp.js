@@ -50,7 +50,7 @@ angular.module('myApp', [
 	////Khu 3 -- Nhận dữ liệu từ Arduno gửi lên (thông qua ESP8266 rồi socket server truyền tải!)
 	//các sự kiện từ Arduino gửi lên (thông qua esp8266, thông qua server)
 	mySocket.on('RAIN', function(json) {
-	$scope.CamBienMua = (json["RAIN"] == 1) ? "Không mưa" : "Có mưa rồi yeah ahihi"
+	$scope.CamBienMua = (json.data == 1) ? "Không mưa" : "Có mưa rồi yeah ahihi"
 	})
 	
 	/// THời tiết Nhiệt độ
@@ -63,16 +63,16 @@ angular.module('myApp', [
 	mySocket.on('DOAM', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		console.log("recv LED", json)
-		$scope.Doam = json["DOAM"]
+		$scope.Doam = json.data
 	})
 	//khi nhận được lệnh Button
 	mySocket.on('THIETBI1', function(json) {
 		//Nhận được thì in ra thôi hihi.
-		$scope.Thietbi1 = (json["THIETBI1"] == 1) ? "ON" : "OFF"
+		$scope.Thietbi1 = (json.data == 1) ? "ON" : "OFF"
 	})
 	mySocket.on('THIETBI2', function(json) {
 		//Nhận được thì in ra thôi hihi.
-		$scope.Thietbi2 = (json["THIETBI2"] == 1) ? "ON" : "OFF"
+		$scope.Thietbi2 = (json.data == 1) ? "ON" : "OFF"
 	})		
 	//// Khu 4 -- Những dòng code sẽ được thực thi khi kết nối với Arduino (thông qua socket server)
 	mySocket.on('connect', function() {
