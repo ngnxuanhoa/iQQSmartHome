@@ -58,6 +58,7 @@ angular.module('myApp', [
 		//Nhận được thì in ra thôi hihi.
 		console.log("recv LED", json)
 		$scope.Nhietdo = json
+		mySocket.emit(json)
 	})
 	/// THời tiết độ ẩm
 	mySocket.on('DOAM', function(json) {
@@ -70,10 +71,12 @@ angular.module('myApp', [
 	mySocket.on('THIETBI1', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		$scope.Thietbi1 = (json["THIETBI1"] == 1) ? "ON" : "OFF"
+		mySocket.emit(json)
 	})
 	mySocket.on('THIETBI2', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		$scope.Thietbi2 = (json["THIETBI2"] == 1) ? "ON" : "OFF"
+		mySocket.emit(json)
 	})		
 	//// Khu 4 -- Những dòng code sẽ được thực thi khi kết nối với Arduino (thông qua socket server)
 	mySocket.on('connect', function() {
