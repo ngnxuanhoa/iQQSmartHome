@@ -24,8 +24,8 @@ angular.module('myApp', [
     $scope.l = "Không có dữ liệu - có thể chưa gắn sensor - ^^";
 	$scope.Nhietdo = "Normal"
 	$scope.Doam = "Normal"
-	$scope.Thietbi1  = "ON"	
-	$scope.Thietbi2  = "ON"
+	$scope.Thietbi1  = "FALSE"	
+	$scope.Thietbi2  = "FALSE"
 	
 	////Khu 2 -- Cài đặt các sự kiện khi tương tác với người dùng
 	//các sự kiện ng-click, nhấn nút
@@ -57,32 +57,56 @@ angular.module('myApp', [
 	mySocket.on('NHIETDO', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		console.log("recv LED", json)
-		$scope.Nhietdo = json
-		mySocket.emit(json)
+		$scope.Nhietdo = json[NHIETDO]
+		
 	})
 	/// THời tiết độ ẩm
 	mySocket.on('DOAM', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		console.log("recv LED", json)
 		$scope.Doam = json["DOAM"]
-		mySocket.emit(json)
+		
 	})
 	//khi nhận được lệnh Button
 	mySocket.on('THIETBI1', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		$scope.Thietbi1 = (json["THIETBI1"] == 1) ? "ON" : "OFF"
-		mySocket.emit(json)
+		
 	})
 	mySocket.on('THIETBI2', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		$scope.Thietbi2 = (json["THIETBI2"] == 1) ? "ON" : "OFF"
-		mySocket.emit(json)
+		
 	})		
 	//// Khu 4 -- Những dòng code sẽ được thực thi khi kết nối với Arduino (thông qua socket server)
 	mySocket.on('connect', function() {
 		console.log("connected")
 		mySocket.emit("RAIN") //Cập nhập trạng thái mưa
 		mySocket.emit("THIETBI") //Cập nhập trạng thái mưa
+	})
+	
+	mySocket.on('DEVICE1', function(json) {
+		//Nhận được thì in ra thôi hihi.
+		if (json == "ON"){mySocket.emit("THIETBI1ON")}
+		else if (json == "OFF"){mySocket.emit("THIETBI1OFF")}
+		
+	})
+	mySocket.on('DEVICE1OFF', function(json) {
+		//Nhận được thì in ra thôi hihi.
+		
+		mySocket.emit("THIETBI1OFF")
+		
+	})
+	mySocket.on('DEVICE2', function(json) {
+		//Nhận được thì in ra thôi hihi.
+		if (json == "ON"){mySocket.emit("THIETBI2ON")}
+		else if (json == "OFF"){mySocket.emit("THIETBI2OFF")}
+		
+	})
+	mySocket.on('DEVICE2OFF', function(json) {
+		//Nhận được thì in ra thôi hihi.
+		mySocket.emit("THIETBI2OFF")
+		
 	})
 		
 });
