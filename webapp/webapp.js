@@ -63,7 +63,7 @@ angular.module('myApp', [
 	mySocket.on('DOAM', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		console.log("recv LED", json)
-		$scope.Doam = json[];
+		$scope.Doam = json;
 	})
 	//khi nhận được lệnh Button
 	mySocket.on('THIETBI1', function(json) {
