@@ -74,20 +74,5 @@ webapp_nsp.on('connection', function(socket) {
 		esp8266_nsp.emit(eventName, eventJson) //gửi toàn bộ lệnh + json đến esp8266
 	});
 })
-io.socket.on('connection', function(socket) {
-	
-	console.log('android connected')
-	
-	//Khi android socket bị mất kết nối
-	socket.on('disconnect', function() {
-		console.log("Disconnect socket webapp")
-	})
-	
-	socket.on('*', function(packet) {
-		console.log("webapp rev and send to esp8266 packet: ", packet.data) //in ra để debug
-		var eventName = packet.data[0]
-		var eventJson = packet.data[1] || {} //nếu gửi thêm json thì lấy json từ lệnh gửi, không thì gửi chuỗi json rỗng, {}
-		esp8266_nsp.emit(eventName, eventJson) //gửi toàn bộ lệnh + json đến esp8266
-	});
-})
+
 console.log("ok")
