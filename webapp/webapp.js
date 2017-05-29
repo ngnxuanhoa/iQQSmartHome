@@ -57,7 +57,7 @@ angular.module('myApp', [
 	mySocket.on('NHIETDO', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		console.log("recv LED", json)
-		$scope.Nhietdo = json
+		$scope.Nhietdo = json.data
 	})
 	/// THời tiết độ ẩm
 	mySocket.on('DOAM', function(json) {
