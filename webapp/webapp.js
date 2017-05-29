@@ -71,12 +71,12 @@ angular.module('myApp', [
 	mySocket.on('THIETBI1', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		$scope.Thietbi1 = (json["THIETBI1"] == 1) ? "ON" : "OFF"
-		mySocket.emit("DEVICE-ANDROID", { DEVICE1: json["THIETBI1"] })
+		mySocket.emit("DEVICE1-ANDROID", { DEVICE1: json["THIETBI1"] })
 	})
 	mySocket.on('THIETBI2', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		$scope.Thietbi2 = (json["THIETBI2"] == 1) ? "ON" : "OFF"
-		mySocket.emit("DEVICE-ANDROID", { DEVICE2: json["THIETBI2"] })
+		mySocket.emit("DEVICE2-ANDROID", { DEVICE2: json["THIETBI2"] })
 	})		
 	//// Khu 4 -- Những dòng code sẽ được thực thi khi kết nối với Arduino (thông qua socket server)
 	mySocket.on('connect', function() {
