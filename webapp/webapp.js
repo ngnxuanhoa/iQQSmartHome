@@ -44,7 +44,9 @@ angular.module('myApp', [
 	$scope.thietbi2off  = function() {
 		mySocket.emit("THIETBI2OFF")
 	}
-	
+	mySocket.on('THIETBI', function() {
+		mySocket.emit("THIETBI") //Cập nhập trạng thái THIET BI
+	})
 	//Cách gửi tham số 1: dùng biến toàn cục! $scope.<tên biến> là biến toàn cục
 		
 	////Khu 3 -- Nhận dữ liệu từ Arduno gửi lên (thông qua ESP8266 rồi socket server truyền tải!)
