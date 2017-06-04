@@ -26,7 +26,8 @@ angular.module('myApp', [
 	$scope.Doam = "Normal"
 	$scope.Thietbi1  = "FALSE"	
 	$scope.Thietbi2  = "FALSE"
-	
+	$scope.Thietbi3  = "FALSE"	
+	$scope.Thietbi4  = "FALSE"
 	////Khu 2 -- Cài đặt các sự kiện khi tương tác với người dùng
 	//các sự kiện ng-click, nhấn nút
 	$scope.updateSensor  = function() {
@@ -44,9 +45,18 @@ angular.module('myApp', [
 	$scope.thietbi2off  = function() {
 		mySocket.emit("THIETBI2OFF")
 	}
-	mySocket.on('THIETBI', function() {
-		mySocket.emit("THIETBI") //Cập nhập trạng thái THIET BI
-	})
+	$scope.thietbi3on  = function() {
+		mySocket.emit("THIETBI3ON")
+	}
+	$scope.thietbi3off  = function() {
+		mySocket.emit("THIETBI3OFF")
+	}
+	$scope.thietbi4on  = function() {
+		mySocket.emit("THIETBI4ON")
+	}
+	$scope.thietbi4off  = function() {
+		mySocket.emit("THIETBI4OFF")
+	}
 	//Cách gửi tham số 1: dùng biến toàn cục! $scope.<tên biến> là biến toàn cục
 		
 	////Khu 3 -- Nhận dữ liệu từ Arduno gửi lên (thông qua ESP8266 rồi socket server truyền tải!)
@@ -79,7 +89,18 @@ angular.module('myApp', [
 		//Nhận được thì in ra thôi hihi.
 		$scope.Thietbi2 = (json["THIETBI2"] == 1) ? "ON" : "OFF"
 		mySocket.emit("DEVICE2-ANDROID", { DEVICE2: json["THIETBI2"] })
-	})		
+	})
+	mySocket.on('THIETBI3', function(json) {
+		//Nhận được thì in ra thôi hihi.
+		$scope.Thietbi3 = (json["THIETBI3"] == 1) ? "ON" : "OFF"
+		mySocket.emit("DEVICE3-ANDROID", { DEVICE3: json["THIETBI3"] })
+	})
+	mySocket.on('THIETBI4', function(json) {
+		//Nhận được thì in ra thôi hihi.
+		$scope.Thietbi4 = (json["THIETBI4"] == 1) ? "ON" : "OFF"
+		mySocket.emit("DEVICE4-ANDROID", { DEVICE4: json["THIETBI4"] })
+	})	
+	
 	//// Khu 4 -- Những dòng code sẽ được thực thi khi kết nối với Arduino (thông qua socket server)
 	mySocket.on('connect', function() {
 		console.log("connected")
@@ -100,5 +121,19 @@ angular.module('myApp', [
 		else if (json == "OFF"){mySocket.emit("THIETBI2OFF")}
 		
 	})
+		mySocket.on('DEVICE3', function(json) {
+		//Nhận được thì in ra thôi hihi.
+		if (json == "ON"){mySocket.emit("THIETBI3ON")}
+		else if (json == "OFF"){mySocket.emit("THIETBI3OFF")}		
+	})
+
+	mySocket.on('DEVICE4', function(json) {
+		//Nhận được thì in ra thôi hihi.
+		if (json == "ON"){mySocket.emit("THIETBI4ON")}
+		else if (json == "OFF"){mySocket.emit("THIETBI4OFF")}
 		
+	})
+	mySocket.on('THIETBI', function() {
+		mySocket.emit("THIETBI") //Cập nhập trạng thái THIET BI
+	})	
 });
