@@ -137,6 +137,6 @@ angular.module('myApp', [
 		mySocket.emit("THIETBI") //Cập nhập trạng thái THIET BI
 	})
 	mySocket.on('ANCONNECT', function() {
-		mySocket.emit("CONNEXT", "SUCCESS") // Xác nhận kết nối android
+		mySocket.emit("CONNEXT",{ "CONNEXT": "SUCCESS"} ) // Xác nhận kết nối android
 	})		
 });
