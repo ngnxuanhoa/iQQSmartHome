@@ -35,27 +35,35 @@ angular.module('myApp', [
 	}
 	$scope.thietbi1on  = function() {
 		mySocket.emit("THIETBI1ON")
+		$scope.Thietbi1 = "ON"
 	}
 	$scope.thietbi1off  = function() {
 		mySocket.emit("THIETBI1OFF")
+		$scope.Thietbi1 = "OFF"
 	}
 	$scope.thietbi2on  = function() {
 		mySocket.emit("THIETBI2ON")
+		$scope.Thietbi2 = "ON"
 	}
 	$scope.thietbi2off  = function() {
 		mySocket.emit("THIETBI2OFF")
+		$scope.Thietbi2 = "OFF"
 	}
 	$scope.thietbi3on  = function() {
 		mySocket.emit("THIETBI3ON")
+		$scope.Thietbi3 = "ON"
 	}
 	$scope.thietbi3off  = function() {
 		mySocket.emit("THIETBI3OFF")
+		$scope.Thietbi3 = "OFF"
 	}
 	$scope.thietbi4on  = function() {
 		mySocket.emit("THIETBI4ON")
+		$scope.Thietbi4 = "ON"
 	}
 	$scope.thietbi4off  = function() {
 		mySocket.emit("THIETBI4OFF")
+		$scope.Thietbi4 = "OFF"
 	}
 	//Cách gửi tham số 1: dùng biến toàn cục! $scope.<tên biến> là biến toàn cục
 		
@@ -105,34 +113,9 @@ angular.module('myApp', [
 	mySocket.on('connect', function() {
 		console.log("connected")
 		mySocket.emit("RAIN") //Cập nhập trạng thái mưa
-		mySocket.emit("THIETBI") //Cập nhập trạng thái mưa
+		mySocket.emit("THIETBI") //Cập nhập trạng thái thiet bi
 	})
 	
-	///Khu nhận tín hiệu từ Android
-	mySocket.on('DEVICE1', function(json) {
-		//Nhận được thì in ra thôi hihi.
-		if (json == "ON"){mySocket.emit("THIETBI1ON")}
-		else if (json == "OFF"){mySocket.emit("THIETBI1OFF")}		
-	})
-
-	mySocket.on('DEVICE2', function(json) {
-		//Nhận được thì in ra thôi hihi.
-		if (json == "ON"){mySocket.emit("THIETBI2ON")}
-		else if (json == "OFF"){mySocket.emit("THIETBI2OFF")}
-		
-	})
-		mySocket.on('DEVICE3', function(json) {
-		//Nhận được thì in ra thôi hihi.
-		if (json == "ON"){mySocket.emit("THIETBI3ON")}
-		else if (json == "OFF"){mySocket.emit("THIETBI3OFF")}		
-	})
-
-	mySocket.on('DEVICE4', function(json) {
-		//Nhận được thì in ra thôi hihi.
-		if (json == "ON"){mySocket.emit("THIETBI4ON")}
-		else if (json == "OFF"){mySocket.emit("THIETBI4OFF")}
-		
-	})
 	mySocket.on('THIETBI', function() {
 		mySocket.emit("THIETBI") //Cập nhập trạng thái THIET BI
 	})
