@@ -91,22 +91,22 @@ angular.module('myApp', [
 	mySocket.on('THIETBI1', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		$scope.Thietbi1 = (json["THIETBI1"] == 1) ? "ON" : "OFF"
-		mySocket.emit("DEVICE1-ANDROID", { DEVICE1: json["THIETBI1"] })
+		mySocket.emit("DEVICE1-ANDROID", { DEVICE: "1" + json["THIETBI1"] })
 	})
 	mySocket.on('THIETBI2', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		$scope.Thietbi2 = (json["THIETBI2"] == 1) ? "ON" : "OFF"
-		mySocket.emit("DEVICE2-ANDROID", { DEVICE2: json["THIETBI2"] })
+		mySocket.emit("DEVICE2-ANDROID", { DEVICE: "2" + json["THIETBI2"] })
 	})
 	mySocket.on('THIETBI3', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		$scope.Thietbi3 = (json["THIETBI3"] == 1) ? "ON" : "OFF"
-		mySocket.emit("DEVICE3-ANDROID", { DEVICE3: json["THIETBI3"] })
+		mySocket.emit("DEVICE3-ANDROID", { DEVICE: "3" + json["THIETBI3"] })
 	})
 	mySocket.on('THIETBI4', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		$scope.Thietbi4 = (json["THIETBI4"] == 1) ? "ON" : "OFF"
-		mySocket.emit("DEVICE4-ANDROID", { DEVICE4: json["THIETBI4"] })
+		mySocket.emit("DEVICE4-ANDROID", { DEVICE: "4" + json["THIETBI4"] })
 	})	
 	///Khu nhận tín hiệu từ Android
 	mySocket.on('DEVICE1', function(json) {
