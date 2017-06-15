@@ -1,7 +1,8 @@
 angular.module('myApp', [
     'ngRoute',
     'mobile-angular-ui',
-	'btford.socket-io'
+	'btford.socket-io',
+	'toggle-switch'
 ]).config(function($routeProvider) {
     $routeProvider.when('/', {
         templateUrl: 'home.html',
@@ -33,35 +34,35 @@ angular.module('myApp', [
 		mySocket.emit("RAIN")
 	}
 	$scope.thietbi1on  = function() {
-		mySocket.emit("THIETBI1ON")
+		mySocket.emit("THIETBI1","HIGH")
 		$scope.Thietbi1 = "ON"
 	}
 	$scope.thietbi1off  = function() {
-		mySocket.emit("THIETBI1OFF")
+		mySocket.emit("THIETBI1", "LOW")
 		$scope.Thietbi1 = "OFF"
 	}
 	$scope.thietbi2on  = function() {
-		mySocket.emit("THIETBI2ON")
+		mySocket.emit("THIETBI2","HIGH")
 		$scope.Thietbi2 = "ON"
 	}
 	$scope.thietbi2off  = function() {
-		mySocket.emit("THIETBI2OFF")
+		mySocket.emit("THIETBI2","LOW")
 		$scope.Thietbi2 = "OFF"
 	}
 	$scope.thietbi3on  = function() {
-		mySocket.emit("THIETBI3ON")
+		mySocket.emit("THIETBI3","HIGH")
 		$scope.Thietbi3 = "ON"
 	}
 	$scope.thietbi3off  = function() {
-		mySocket.emit("THIETBI3OFF")
+		mySocket.emit("THIETBI3","LOW")
 		$scope.Thietbi3 = "OFF"
 	}
 	$scope.thietbi4on  = function() {
-		mySocket.emit("THIETBI4ON")
+		mySocket.emit("THIETBI4","HIGH")
 		$scope.Thietbi4 = "ON"
 	}
 	$scope.thietbi4off  = function() {
-		mySocket.emit("THIETBI4OFF")
+		mySocket.emit("THIETBI4","LOW")
 		$scope.Thietbi4 = "OFF"
 	}
 	//Cách gửi tham số 1: dùng biến toàn cục! $scope.<tên biến> là biến toàn cục
