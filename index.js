@@ -17,7 +17,7 @@ var middleware = require('socketio-wildcard')();		//Để có thể bắt toàn 
 esp8266_nsp.use(middleware);									//Khi esp8266 emit bất kỳ lệnh gì lên thì sẽ bị bắt
 webapp_nsp.use(middleware);									//Khi webapp emit bất kỳ lệnh gì lên thì sẽ bị bắt
 
-server.listen(process.env.PORT || PORT);										// Cho socket server (chương trình mạng) lắng nghe ở port 80
+server.listen(process.env.PORT || PORT);										// Cho socket server (chương trình mạng) lắng nghe ở port 3484
 console.log("Server nodejs chay tai dia chi: " + ip.address() + ":" + PORT)
 
 //Cài đặt webapp các fie dữ liệu tĩnh
@@ -27,7 +27,7 @@ app.use(express.static("node_modules/angular-route")) 				// Có thể truy cậ
 app.use(express.static("node_modules/socket.io-client")) 				// Có thể truy cập các file trong node_modules/socket.io-client từ xa
 app.use(express.static("node_modules/angular-socket-io"))			// Có thể truy cập các file trong node_modules/angular-socket-io từ xa
 app.use(express.static("webapp")) 													// Dùng để lưu trữ webapp
-app.use(express.static("node_modules/angular-bootstrap-toggle-switch")) 													// Dùng để lưu trữ webapp
+
 
 //giải nén chuỗi JSON thành các OBJECT
 function ParseJson(jsondata) {
@@ -74,5 +74,4 @@ webapp_nsp.on('connection', function(socket) {
 		esp8266_nsp.emit(eventName, eventJson) //gửi toàn bộ lệnh + json đến esp8266
 	});
 })
-
 console.log("ok")
