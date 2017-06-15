@@ -34,35 +34,35 @@ angular.module('myApp', [
 		mySocket.emit("RAIN")
 	}
 	$scope.thietbi1on  = function() {
-		mySocket.emit("THIETBI1","HIGH")
+		mySocket.emit("THIETBI1ON")
 		$scope.Thietbi1 = "ON"
 	}
 	$scope.thietbi1off  = function() {
-		mySocket.emit("THIETBI1", "LOW")
+		mySocket.emit("THIETBI1OFF")
 		$scope.Thietbi1 = "OFF"
 	}
 	$scope.thietbi2on  = function() {
-		mySocket.emit("THIETBI2","HIGH")
+		mySocket.emit("THIETBI2ON")
 		$scope.Thietbi2 = "ON"
 	}
 	$scope.thietbi2off  = function() {
-		mySocket.emit("THIETBI2","LOW")
+		mySocket.emit("THIETBI2OFF")
 		$scope.Thietbi2 = "OFF"
 	}
 	$scope.thietbi3on  = function() {
-		mySocket.emit("THIETBI3","HIGH")
+		mySocket.emit("THIETBI3ON")
 		$scope.Thietbi3 = "ON"
 	}
 	$scope.thietbi3off  = function() {
-		mySocket.emit("THIETBI3","LOW")
+		mySocket.emit("THIETBI3OFF")
 		$scope.Thietbi3 = "OFF"
 	}
 	$scope.thietbi4on  = function() {
-		mySocket.emit("THIETBI4","HIGH")
+		mySocket.emit("THIETBI4ON")
 		$scope.Thietbi4 = "ON"
 	}
 	$scope.thietbi4off  = function() {
-		mySocket.emit("THIETBI4","LOW")
+		mySocket.emit("THIETBI4OFF")
 		$scope.Thietbi4 = "OFF"
 	}
 	//Cách gửi tham số 1: dùng biến toàn cục! $scope.<tên biến> là biến toàn cục
