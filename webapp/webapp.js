@@ -1,8 +1,7 @@
 angular.module('myApp', [
     'ngRoute',
     'mobile-angular-ui',
-	'btford.socket-io',
-	'toggle-switch'
+	'btford.socket-io'
 ]).config(function($routeProvider) {
     $routeProvider.when('/', {
         templateUrl: 'home.html',
