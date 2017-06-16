@@ -70,22 +70,11 @@ angular.module('myApp', [
 	//các sự kiện từ Arduino gửi lên (thông qua esp8266, thông qua server)
 	mySocket.on('RAIN', function(json) {
 	$scope.CamBienMua = (json["RAIN"] == 1) ? "Không mưa" : "Có mưa rồi yeah ahihi"
+	$scope.Nhietdo = json["NHIETDO"]
+	$scope.Doam = json["DOAM"]
 	})
 	
-	/// THời tiết Nhiệt độ
-	mySocket.on('NHIETDO', function(json) {
-		//Nhận được thì in ra thôi hihi.
-		console.log("recv LED", json)
-		$scope.Nhietdo = json[NHIETDO]
-		
-	})
-	/// THời tiết độ ẩm
-	mySocket.on('DOAM', function(json) {
-		//Nhận được thì in ra thôi hihi.
-		console.log("recv LED", json)
-		$scope.Doam = json["DOAM"]
-		
-	})
+
 	//khi nhận được lệnh Button
 	mySocket.on('THIETBI1', function(json) {
 		//Nhận được thì in ra thôi hihi.
