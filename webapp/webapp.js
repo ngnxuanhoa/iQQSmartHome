@@ -68,7 +68,7 @@ angular.module('myApp', [
 		
 	////Khu 3 -- Nhận dữ liệu từ Arduno gửi lên (thông qua ESP8266 rồi socket server truyền tải!)
 	//các sự kiện từ Arduino gửi lên (thông qua esp8266, thông qua server)
-	mySocket.on('RAIN', function(json) {
+	mySocket.on('WEATHER', function(json) {
 	$scope.CamBienMua = (json["RAIN"] == 1) ? "Không mưa" : "Có mưa rồi yeah ahihi"
 	$scope.Nhietdo = json["NHIETDO"]
 	$scope.Doam = json["DOAM"]
