@@ -1,4 +1,4 @@
-﻿<div class="scrollable">
+<div class="scrollable">
 	<div class="scrollable-content">
 		<div class="list-group text-center">
 			<!-- cục giới thiệu -->
@@ -7,6 +7,16 @@
 				</h2>
 			</div>
 			
+			<!-- Cục cảm biến mưa -->
+			<div class="list-group-item list-group-item-home">
+				<div>
+					<i class="fa fa-gamepad feature-icon text-primary"></i>
+				</div>
+				<div>
+					<h3 class="home-heading">Cảm biến mưa</h3>
+					Kết quả: {{CamBienMua}}
+				</div>
+			</div>
 			<!-- Cục Thời tiết -->
 			<div class="list-group-item list-group-item-home">
 				<div>
@@ -19,7 +29,18 @@
 					Độ ẩm	:	{{Doam}}
 				</div>
 			</div>
-
+			<!-- Cục cập nhập giá trị cảm biến -->
+			<div class="list-group-item list-group-item-home">
+				<div>
+					<i class="fa fa-tachometer feature-icon  text-primary"></i>
+				</div>
+				<div>
+					<h3 class="home-heading">Cập nhập cảm biến</h3>
+					<button class="button" ng-click="updateSensor()">
+						Nhấn vô dể cập nhập giá trị cảm biến
+					</button>
+				</div>
+			</div>
 			<div class="list-group-item list-group-item-home">
 				<div>
 					<i class="fa fa-tachometer feature-icon  text-primary"></i>
@@ -28,10 +49,10 @@
 					<h3 class="home-heading">BẬT TẮT THIẾT BỊ</h3>
 					<!--<button class="button" ng-click="thietbi1on()" ng-value ="1">-->
 					<button class="button" ng-click="thietbi1on()" ng-value="1">
-						Bật điều hòa
+						Bật thiết bị 1
 					</button>								
 					<button class="button" ng-click="thietbi1off()" ng-value ="0">
-						Tắt điều hòa
+						Tắt thiết bị 1
 					</button>
 					<br><br>
 					<button class="button" ng-click="thietbi2on()" ng-value ="1">
@@ -63,7 +84,7 @@
 				</div>
 				<div>
 					<h3 class="home-heading">TRẠNG THÁI THIẾT BỊ</h3>
-					Điều hòa: {{Thietbi1}}
+					Thiết bị 1: {{Thietbi1}}
 					Thiết bị 2: {{Thietbi2}}
 					<br><br>
 					Thiết bị 3: {{Thietbi3}}
