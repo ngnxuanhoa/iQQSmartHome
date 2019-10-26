@@ -1,5 +1,5 @@
 {
-  "name": "socketServer1",
+  "name": "ngnxuanhoa",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,11 +12,11 @@
     "socket.io": "*",
     "socket.io-client": "^1.7.3",
     "socketio-wildcard": "^0.3.0",
-	"ip": "^1.1.4"
+    "ip": "^1.1.4"
   },
-  "devDependencies": { },
+  "devDependencies": {},
   "scripts": {
-	"start": "node index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

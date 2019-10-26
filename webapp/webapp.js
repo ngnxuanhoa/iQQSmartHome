@@ -18,9 +18,9 @@
 /////////////////////// Những dòng code ở trên phần này là phần cài đặt, các bạn hãy đọc thêm về angularjs để hiểu, cái này không nhảy cóc được nha!
 }).controller('Home', function($scope, mySocket) {
 	////Khu 1 -- Khu cài đặt tham số 
-    //cài đặt một số tham số test chơi
+   	//cài đặt một số tham số test chơi
 	//dùng để đặt các giá trị mặc định
-        $scope.l = "Không có dữ liệu - có thể chưa gắn sensor - ^^";
+        	$scope.l = "Không có dữ liệu - có thể chưa gắn sensor - ^^";
 	$scope.Nhietdo = "Normal"
 	$scope.Doam = "Normal"
 	$scope.Thietbi1  = "FALSE"	
@@ -70,7 +70,6 @@
 	$scope.Doam = json["DOAM"]
 	})
 	
-
 	//khi nhận được lệnh Button
 	mySocket.on('THIETBI1', function(json) {
 		//Nhận được thì in ra thôi hihi.
@@ -97,6 +96,10 @@
 	
 	mySocket.on('THIETBI', function() {
 		mySocket.emit("THIETBI") //Cập nhập trạng thái THIET BI
+		$scope.Thietbi1 = (json["THIETBI1"] == 1) ? "ON" : "OFF"
+		$scope.Thietbi2 = (json["THIETBI2"] == 1) ? "ON" : "OFF"
+		$scope.Thietbi3 = (json["THIETBI3"] == 1) ? "ON" : "OFF"
+		$scope.Thietbi4 = (json["THIETBI4"] == 1) ? "ON" : "OFF"
 	})
 	mySocket.on('ANCONNECT', function() {
 		mySocket.emit("CONNEXT",{ "CONNEXT": "SUCCESS"} ) // Xác nhận kết nối android
