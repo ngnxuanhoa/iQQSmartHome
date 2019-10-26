@@ -12,7 +12,7 @@ var io = socketio(server);					//#Phải khởi tạo io sau khi tạo app
 
 var webapp_nsp = io.of('/webapp')				//namespace của webapp
 var esp8266_nsp = io.of('/esp8266')				//namespace của esp8266
-var esp8266_nsp = io.of('/rqmoblie')				//namespace của moblie
+var rqmoblie_nsp = io.of('/rqmoblie')				//namespace của moblie
 
 var middleware = require('socketio-wildcard')();			//Để có thể bắt toàn bộ lệnh!
 esp8266_nsp.use(middleware);						//Khi esp8266 emit bất kỳ lệnh gì lên thì sẽ bị bắt
