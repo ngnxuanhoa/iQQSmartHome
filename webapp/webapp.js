@@ -98,12 +98,17 @@
 		mySocket.emit("THIETBI") //Cập nhập trạng thái thiet bi
 	})
 	
-	mySocket.on('THIETBI', function() {
+	mySocket.on('THIETBI', function(json) {
 		//mySocket.emit("THIETBI") //Cập nhập trạng thái THIET BI
+		
 		$scope.Thietbi1 = (json["THIETBI1"] == 0) ? "ON" : "OFF"
+		console.log(json["THIETBI1"])
 		$scope.Thietbi2 = (json["THIETBI2"] == 0) ? "ON" : "OFF"
+		console.log(json["THIETBI2"])
 		$scope.Thietbi3 = (json["THIETBI3"] == 0) ? "ON" : "OFF"
+		console.log(json["THIETBI3"])
 		$scope.Thietbi4 = (json["THIETBI4"] == 0) ? "ON" : "OFF"
+		console.log(json["THIETBI4"])
 	})
 	mySocket.on('ANCONNECT', function() {
 		mySocket.emit("CONNEXT",{ "CONNEXT": "SUCCESS"} ) // Xác nhận kết nối android
