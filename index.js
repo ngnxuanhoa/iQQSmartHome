@@ -19,7 +19,7 @@ esp8266_nsp.use(middleware);									//Khi esp8266 emit bất kỳ lệnh gì l�
 webapp_nsp.use(middleware);									//Khi webapp emit bất kỳ lệnh gì lên thì sẽ bị bắt
 rqmobile_nsp.use(middleware);
  
-server.listen(PORT);										// Cho socket server (chương trình mạng) lắng nghe ở port 3484
+server.listen(process.env.PORT || PORT);										// Cho socket server (chương trình mạng) lắng nghe ở port 3484
 console.log("Server nodejs chay tai dia chi: " + ip.address() + ":" + PORT)
 
 //Cài đặt webapp các fie dữ liệu tĩnh
