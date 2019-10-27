@@ -20,7 +20,7 @@
 	////Khu 1 -- Khu cài đặt tham số 
    	//cài đặt một số tham số test chơi
 	//dùng để đặt các giá trị mặc định
-        	$scope.l = "Không có dữ liệu - có thể chưa gắn sensor - ^^";
+    $scope.l = "Không có dữ liệu - có thể chưa gắn sensor - ^^";
 	$scope.Nhietdo = "Normal"
 	$scope.Doam = "Normal"
 	$scope.Thietbi1  = "FALSE"	
@@ -100,15 +100,15 @@
 	
 	mySocket.on('THIETBI', function(json) {
 		//mySocket.emit("THIETBI") //Cập nhập trạng thái THIET BI
+		//$scope.Thietbi1 = (json["THIETBI1"] == 0) ? "ON" : "OFF"
+		//$scope.Thietbi2 = (json["THIETBI2"] == 0) ? "ON" : "OFF"
+		//$scope.Thietbi3 = (json["THIETBI3"] == 0) ? "ON" : "OFF"
+		//$scope.Thietbi4 = (json["THIETBI4"] == 0) ? "ON" : "OFF"
+	})
+	mySocket.on('connect', function() {
+		console.log("connected")
+		mySocket.emit("THIETBI") //Cập nhập trạng thái thiết bị
 		
-		$scope.Thietbi1 = (json["THIETBI1"] == 0) ? "ON" : "OFF"
-		console.log(json["THIETBI1"])
-		$scope.Thietbi2 = (json["THIETBI2"] == 0) ? "ON" : "OFF"
-		console.log(json["THIETBI2"])
-		$scope.Thietbi3 = (json["THIETBI3"] == 0) ? "ON" : "OFF"
-		console.log(json["THIETBI3"])
-		$scope.Thietbi4 = (json["THIETBI4"] == 0) ? "ON" : "OFF"
-		console.log(json["THIETBI4"])
 	})
 	mySocket.on('ANCONNECT', function() {
 		mySocket.emit("CONNEXT",{ "CONNEXT": "SUCCESS"} ) // Xác nhận kết nối android
