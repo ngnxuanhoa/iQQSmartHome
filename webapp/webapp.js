@@ -99,7 +99,7 @@
 	})
 	
 	mySocket.on('THIETBI', function(json) {
-		mySocket.emit("THIETBI") //Cập nhập trạng thái THIET BI
+		//mySocket.emit("THIETBI") //Cập nhập trạng thái THIET BI
 		$scope.Thietbi1 = (json["THIETBI1"] == 0) ? "ON" : "OFF"
 		$scope.Thietbi2 = (json["THIETBI2"] == 0) ? "ON" : "OFF"
 		$scope.Thietbi3 = (json["THIETBI3"] == 0) ? "ON" : "OFF"
