@@ -30,35 +30,35 @@
 	////Khu 2 -- Cài đặt các sự kiện khi tương tác với người dùng
 	//các sự kiện ng-click, nhấn nút
 	$scope.thietbi1on  = function() {
-		mySocket.emit("THIETBI1",0)
+		mySocket.emit("THIETBI0",0)
 		$scope.Thietbi1 = "ON"
 	}
 	$scope.thietbi1off  = function() {
-		mySocket.emit("THIETBI1", 1)
+		mySocket.emit("THIETBI0", 1)
 		$scope.Thietbi1 = "OFF"
 	}
 	$scope.thietbi2on  = function() {
-		mySocket.emit("THIETBI2",0)
+		mySocket.emit("THIETBI1",0)
 		$scope.Thietbi2 = "ON"
 	}
 	$scope.thietbi2off  = function() {
-		mySocket.emit("THIETBI2",1)
+		mySocket.emit("THIETBI1",1)
 		$scope.Thietbi2 = "OFF"
 	}
 	$scope.thietbi3on  = function() {
-		mySocket.emit("THIETBI3",0)
+		mySocket.emit("THIETBI2",0)
 		$scope.Thietbi3 = "ON"
 	}
 	$scope.thietbi3off  = function() {
-		mySocket.emit("THIETBI3",1)
+		mySocket.emit("THIETBI2",1)
 		$scope.Thietbi3 = "OFF"
 	}
 	$scope.thietbi4on  = function() {
-		mySocket.emit("THIETBI4",0)
+		mySocket.emit("THIETBI3",0)
 		$scope.Thietbi4 = "ON"
 	}
 	$scope.thietbi4off  = function() {
-		mySocket.emit("THIETBI4",1)
+		mySocket.emit("THIETBI3",1)
 		$scope.Thietbi4 = "OFF"
 	}
 	//Cách gửi tham số 1: dùng biến toàn cục! $scope.<tên biến> là biến toàn cục
@@ -71,25 +71,25 @@
 	})
 	
 	//khi nhận được lệnh Button
+	mySocket.on('THIETBI0', function(json) {
+		//Nhận được thì in ra thôi hihi.
+		console.log(json["THIETBI0"])
+		$scope.Thietbi1 = (json["THIETBI0"] == 0) ? "ON" : "OFF"
+	})
 	mySocket.on('THIETBI1', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		console.log(json["THIETBI1"])
-		$scope.Thietbi1 = (json["THIETBI1"] == 0) ? "ON" : "OFF"
+		$scope.Thietbi2 = (json["THIETBI1"] == 0) ? "ON" : "OFF"
 	})
 	mySocket.on('THIETBI2', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		console.log(json["THIETBI2"])
-		$scope.Thietbi2 = (json["THIETBI2"] == 0) ? "ON" : "OFF"
+		$scope.Thietbi3 = (json["THIETBI2"] == 0) ? "ON" : "OFF"
 	})
 	mySocket.on('THIETBI3', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		console.log(json["THIETBI3"])
-		$scope.Thietbi3 = (json["THIETBI3"] == 0) ? "ON" : "OFF"
-	})
-	mySocket.on('THIETBI4', function(json) {
-		//Nhận được thì in ra thôi hihi.
-		console.log(json["THIETBI4"])
-		$scope.Thietbi4 = (json["THIETBI4"] == 0) ? "ON" : "OFF"
+		$scope.Thietbi4 = (json["THIETBI3"] == 0) ? "ON" : "OFF"
 	})	
 
 	//// Khu 4 -- Những dòng code sẽ được thực thi khi kết nối với Arduino (thông qua socket server)
@@ -100,10 +100,10 @@
 	
 	mySocket.on('THIETBI', function(json) {
 		//mySocket.emit("THIETBI") //Cập nhập trạng thái THIET BI
-		$scope.Thietbi1 = (json["THIETBI1"] == 0) ? "ON" : "OFF"
-		$scope.Thietbi2 = (json["THIETBI2"] == 0) ? "ON" : "OFF"
-		$scope.Thietbi3 = (json["THIETBI3"] == 0) ? "ON" : "OFF"
-		$scope.Thietbi4 = (json["THIETBI4"] == 0) ? "ON" : "OFF"
+		$scope.Thietbi1 = (json["THIETBI0"] == 0) ? "ON" : "OFF"
+		$scope.Thietbi2 = (json["THIETBI1"] == 0) ? "ON" : "OFF"
+		$scope.Thietbi3 = (json["THIETBI2"] == 0) ? "ON" : "OFF"
+		$scope.Thietbi4 = (json["THIETBI3"] == 0) ? "ON" : "OFF"
 	})
 	mySocket.on('connect', function() {
 		console.log("connected")
