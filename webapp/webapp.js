@@ -27,6 +27,8 @@
 	$scope.Thietbi2  = "FALSE"
 	$scope.Thietbi3  = "FALSE"	
 	$scope.Thietbi4  = "FALSE"
+	$scope.Thietbi5  = "FALSE"
+
 	////Khu 2 -- Cài đặt các sự kiện khi tương tác với người dùng
 	//các sự kiện ng-click, nhấn nút
 	$scope.thietbi1on  = function() {
@@ -61,6 +63,14 @@
 		mySocket.emit("THIETBI3",1)
 		$scope.Thietbi4 = "OFF"
 	}
+	$scope.thietbi5on  = function() {
+		mySocket.emit("THIETBI4",0)
+		$scope.Thietbi5 = "ON"
+	}
+	$scope.thietbi5off  = function() {
+		mySocket.emit("THIETBI4",1)
+		$scope.Thietbi5 = "OFF"
+	}
 	//Cách gửi tham số 1: dùng biến toàn cục! $scope.<tên biến> là biến toàn cục
 		
 	////Khu 3 -- Nhận dữ liệu từ Arduno ESP8266
@@ -91,7 +101,11 @@
 		console.log(json["THIETBI3"])
 		$scope.Thietbi4 = (json["THIETBI3"] == 0) ? "ON" : "OFF"
 	})	
-
+	mySocket.on('THIETBI4', function(json) {
+		//Nhận được thì in ra thôi hihi.
+		console.log(json["THIETBI4"])
+		$scope.Thietbi4 = (json["THIETBI4"] == 0) ? "ON" : "OFF"
+	})	
 	//// Khu 4 -- Những dòng code sẽ được thực thi khi kết nối với Arduino (thông qua socket server)
 	mySocket.on('connect', function() {
 		console.log("connected")
@@ -104,6 +118,7 @@
 		$scope.Thietbi2 = (json["THIETBI1"] == 0) ? "ON" : "OFF"
 		$scope.Thietbi3 = (json["THIETBI2"] == 0) ? "ON" : "OFF"
 		$scope.Thietbi4 = (json["THIETBI3"] == 0) ? "ON" : "OFF"
+		$scope.Thietbi4 = (json["THIETBI4"] == 0) ? "ON" : "OFF"
 	})
 	mySocket.on('connect', function() {
 		console.log("connected")
