@@ -104,7 +104,7 @@
 	mySocket.on('THIETBI4', function(json) {
 		//Nhận được thì in ra thôi hihi.
 		console.log(json["THIETBI4"])
-		$scope.Thietbi4 = (json["THIETBI4"] == 0) ? "ON" : "OFF"
+		$scope.Thietbi5 = (json["THIETBI4"] == 0) ? "ON" : "OFF"
 	})	
 	//// Khu 4 -- Những dòng code sẽ được thực thi khi kết nối với Arduino (thông qua socket server)
 	mySocket.on('connect', function() {
@@ -118,7 +118,7 @@
 		$scope.Thietbi2 = (json["THIETBI1"] == 0) ? "ON" : "OFF"
 		$scope.Thietbi3 = (json["THIETBI2"] == 0) ? "ON" : "OFF"
 		$scope.Thietbi4 = (json["THIETBI3"] == 0) ? "ON" : "OFF"
-		$scope.Thietbi4 = (json["THIETBI4"] == 0) ? "ON" : "OFF"
+		$scope.Thietbi5 = (json["THIETBI4"] == 0) ? "ON" : "OFF"
 	})
 	mySocket.on('connect', function() {
 		console.log("connected")
