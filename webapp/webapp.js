@@ -17,12 +17,10 @@
 	
 /////////////////////// Những dòng code ở trên phần này là phần cài đặt, các bạn hãy đọc thêm về angularjs để hiểu, cái này không nhảy cóc được nha!
 }).controller('Home', function($scope, mySocket) {
-	////Khu 1 -- Khu cài đặt tham số 
-   	//cài đặt một số tham số test chơi
-	//dùng để đặt các giá trị mặc định
-    $scope.l = "Không có dữ liệu - có thể chưa gắn sensor - ^^";
-	$scope.Nhietdo = "Normal"
-	$scope.Doam = "Normal"
+	////Khu 1 -- Khu cài đặt tham số mặc định
+    	$scope.gas = "Không có dữ liệu - có thể chưa gắn sensor - ^^";
+	$scope.tem = "Không có dữ liệu - có thể chưa gắn sensor - ^^";
+	$scope.hum = "Không có dữ liệu - có thể chưa gắn sensor - ^^";
 	$scope.Thietbi1  = "FALSE"	
 	$scope.Thietbi2  = "FALSE"
 	$scope.Thietbi3  = "FALSE"	
@@ -85,38 +83,34 @@
 	////Khu 3 -- Nhận dữ liệu từ Arduno ESP8266
 	
 	mySocket.on('WEATHER', function(json) {
-	$scope.Nhietdo = json["NHIETDO"]
-	$scope.Doam = json["DOAM"]
+		$scope.tem = json["TEMP"]
+		$scope.hum = json["HUMI"]
+	})
+	mySocket.on('GAS', function(json) {
+		$scope.gas = (json["GAS"] == 0) ? "Normal" : "GAS Leakage"
 	})
 	
-	//khi nhận được lệnh Button
 	mySocket.on('THIETBI0', function(json) {
-		//Nhận được thì in ra thôi hihi.
 		console.log(json["THIETBI0"])
 		$scope.Thietbi1 = (json["THIETBI0"] == 0) ? "ON" : "OFF"
 	})
 	mySocket.on('THIETBI1', function(json) {
-		//Nhận được thì in ra thôi hihi.
 		console.log(json["THIETBI1"])
 		$scope.Thietbi2 = (json["THIETBI1"] == 0) ? "ON" : "OFF"
 	})
 	mySocket.on('THIETBI2', function(json) {
-		//Nhận được thì in ra thôi hihi.
 		console.log(json["THIETBI2"])
 		$scope.Thietbi3 = (json["THIETBI2"] == 0) ? "ON" : "OFF"
 	})
 	mySocket.on('THIETBI3', function(json) {
-		//Nhận được thì in ra thôi hihi.
 		console.log(json["THIETBI3"])
 		$scope.Thietbi4 = (json["THIETBI3"] == 0) ? "ON" : "OFF"
 	})	
 	mySocket.on('THIETBI4', function(json) {
-		//Nhận được thì in ra thôi hihi.
 		console.log(json["THIETBI4"])
 		$scope.Thietbi5 = (json["THIETBI4"] == 0) ? "ON" : "OFF"
 	})
 	mySocket.on('THIETBI5', function(json) {
-		//Nhận được thì in ra thôi hihi.
 		console.log(json["THIETBI5"])
 		$scope.Thietbi6 = (json["THIETBI5"] == 0) ? "ON" : "OFF"
 	})	
@@ -124,6 +118,7 @@
 	mySocket.on('connect', function() {
 		console.log("connected")
 		mySocket.emit("THIETBI") //Cập nhập trạng thái thiet bi
+		mySocket.emit("WEATHER") //Cập nhập trạng thái thiet bi
 	})
 	
 	mySocket.on('THIETBI', function(json) {
