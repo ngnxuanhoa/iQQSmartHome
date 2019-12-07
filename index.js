@@ -12,12 +12,12 @@ var io = socketio(server);								//#Phải khởi tạo io sau khi tạo app
 
 var webapp_nsp = io.of('/webapp')				//namespace của webapp
 var esp8266_nsp = io.of('/esp8266')				//namespace của esp8266
-var rqmobile_nsp = io.of('/rqmobile')				//namespace của esp8266
+var rqmobile_nsp = io.of('/rqmobile')				//namespace của mobilephone
 
-var middleware = require('socketio-wildcard')();		//Để có thể bắt toàn bộ lệnh!
-esp8266_nsp.use(middleware);									//Khi esp8266 emit bất kỳ lệnh gì lên thì sẽ bị bắt
-webapp_nsp.use(middleware);									//Khi webapp emit bất kỳ lệnh gì lên thì sẽ bị bắt
-rqmobile_nsp.use(middleware);
+var middleware = require('socketio-wildcard')();		//Cacth all payload!
+esp8266_nsp.use(middleware);					//esp8266 emit msg
+webapp_nsp.use(middleware);					//webapp emit msg
+rqmobile_nsp.use(middleware);					//mobilephone emit msg
  
 server.listen(process.env.PORT || PORT);										// Cho socket server (chương trình mạng) lắng nghe ở port 3484
 console.log("Server nodejs chay tai dia chi: " + ip.address() + ":" + PORT)
