@@ -55,7 +55,7 @@ esp8266_nsp.on('connection', function(socket) {
 		var eventName = packet.data[0]
 		var eventJson = packet.data[1] || {} //nếu gửi thêm json thì lấy json từ lệnh gửi, không thì gửi chuỗi json rỗng, {}
 		webapp_nsp.emit(eventName, eventJson) //gửi toàn bộ lệnh + json đến webapp
-		rqmobile_nsp.emit(eventName, eventJson) //gửi toàn bộ lệnh + json đến webapp
+		rqmobile_nsp.emit(eventName, eventJson) //gửi toàn bộ lệnh + json đến mobile
 	});
 })
 
@@ -75,16 +75,15 @@ webapp_nsp.on('connection', function(socket) {
 		var eventName = packet.data[0]
 		var eventJson = packet.data[1] || {} //nếu gửi thêm json thì lấy json từ lệnh gửi, không thì gửi chuỗi json rỗng, {}
 		esp8266_nsp.emit(eventName, eventJson) //gửi toàn bộ lệnh + json đến esp8266
-		rqmobile_nsp.emit(eventName, eventJson) //gửi toàn bộ lệnh + json đến webapp
+		rqmobile_nsp.emit(eventName, eventJson) //gửi toàn bộ lệnh + json đến mobile
 	});
 })
-//Bắt các sự kiện khi webapp kết nối
+//Bắt các sự kiện khi mobile kết nối
 
 rqmobile_nsp.on('connection', function(socket) {
 	
-	console.log('webapp connected')
-	
-	//Khi webapp socket bị mất kết nối
+	console.log('mobile connected')
+	socket.emit('connection', {"con":"success"});
 	socket.on('disconnect', function() {
 		console.log("Disconnect socket webapp")
 	})
