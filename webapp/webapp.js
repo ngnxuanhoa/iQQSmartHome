@@ -82,7 +82,7 @@
 		
 	////Khu 3 -- Nhận dữ liệu từ Arduno ESP8266
 	
-	mySocket.on('TEMPH', function(json) {
+	mySocket.on('WEATHER', function(json) {
 		$scope.tem = json["TEMP"]
 		$scope.hum = json["HUMI"]
 	})
@@ -118,7 +118,7 @@
 	mySocket.on('connect', function() {
 		console.log("connected")
 		mySocket.emit("THIETBI") //Cập nhập trạng thái thiet bi
-		mySocket.emit("TEMPH") //Cập nhập trạng thái thiet bi
+		mySocket.emit("WEATHER") //Cập nhập trạng thái thiet bi
 	})
 	
 	mySocket.on('THIETBI', function(json) {
