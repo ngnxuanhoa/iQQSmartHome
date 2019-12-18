@@ -83,7 +83,6 @@ webapp_nsp.on('connection', function(socket) {
 rqmobile_nsp.on('connection', function(socket) {
 	
 	console.log('mobile connected')
-	socket.emit('connection', {'con':'success'});
 	socket.on('disconnect', function() {
 		console.log("Disconnect socket webapp")
 	})
