@@ -18,7 +18,7 @@
 /////////////////////// Những dòng code ở trên phần này là phần cài đặt, các bạn hãy đọc thêm về angularjs để hiểu, cái này không nhảy cóc được nha!
 }).controller('Home', function($scope, mySocket) {
 	////Khu 1 -- Khu cài đặt tham số mặc định
-    	$scope.gas = "Không có dữ liệu - có thể chưa gắn sensor - ^^";
+    $scope.gas = "Không có dữ liệu - có thể chưa gắn sensor - ^^";
 	$scope.tem = "Không có dữ liệu - có thể chưa gắn sensor - ^^";
 	$scope.hum = "Không có dữ liệu - có thể chưa gắn sensor - ^^";
 	$scope.Thietbi1  = "FALSE"	
@@ -68,8 +68,6 @@
 	mySocket.on('WEATHER', function(json) {
 		$scope.tem = json["TEMP"]
 		$scope.hum = json["HUMI"]
-	})
-	mySocket.on('GAS', function(json) {
 		$scope.gas = (json["GAS"] == 0) ? "Normal" : "GAS Leakage"
 	})
 	
@@ -102,11 +100,9 @@
 		$scope.Thietbi2 = (json["THIETBI1"] == 0) ? "ON" : "OFF"
 		$scope.Thietbi3 = (json["THIETBI2"] == 0) ? "ON" : "OFF"
 		$scope.Thietbi4 = (json["THIETBI3"] == 0) ? "ON" : "OFF"
+		//location.reload();
 	})
-	mySocket.on('connect', function() {
-		console.log("connected")
-		mySocket.emit("THIETBI") //Cập nhập trạng thái thiết bị
-	})
+
 	mySocket.on('ANCONNECT', function() {
 		mySocket.emit("CONNEXT",{ "CONNEXT": "SUCCESS"} ) // Xác nhận kết nối android
 	})		
