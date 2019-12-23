@@ -65,12 +65,6 @@
 		
 	////Khu 3 -- Nhận dữ liệu từ Arduno ESP8266
 	
-	mySocket.on('WEATHER', function(json) {
-		$scope.tem = json["TEMP"]
-		$scope.hum = json["HUMI"]
-		$scope.gas = (json["GAS"] == 0) ? "Normal" : "GAS Leakage"
-	})
-	
 	mySocket.on('THIETBI0', function(json) {
 		console.log(json["THIETBI0"])
 		$scope.Thietbi1 = (json["THIETBI0"] == 0) ? "ON" : "OFF"
@@ -91,7 +85,6 @@
 	mySocket.on('connect', function() {
 		console.log("connected")
 		mySocket.emit("THIETBI") //Cập nhập trạng thái thiet bi
-		mySocket.emit("WEATHER") //Cập nhập trạng thái thiet bi
 	})
 	
 	mySocket.on('THIETBI', function(json) {
@@ -100,6 +93,9 @@
 		$scope.Thietbi2 = (json["THIETBI1"] == 0) ? "ON" : "OFF"
 		$scope.Thietbi3 = (json["THIETBI2"] == 0) ? "ON" : "OFF"
 		$scope.Thietbi4 = (json["THIETBI3"] == 0) ? "ON" : "OFF"
+		$scope.tem = json["TEMP"]
+		$scope.hum = json["HUMI"]
+		$scope.gas = (json["GAS"] == 0) ? "Normal" : "GAS Leakage"
 		//location.reload();
 	})
 
